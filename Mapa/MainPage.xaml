@@ -1,10 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mapa.MainPage"
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
-             x:Class="Mapa.MainPage">
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials">
+    <maps:Map IsShowingUser="true" >
+    <x:Arguments>
+        <MapSpan>
+            <x:Arguments>
+                <sensors:Location>
+                    <x:Arguments>
+                        <x:Double>36.9628066</x:Double>
+                        <x:Double>-122.0194722</x:Double>
+                    </x:Arguments>
+                </sensors:Location>
+                <x:Double>0.01</x:Double>
+                <x:Double>0.01</x:Double>
+            </x:Arguments>
+        </MapSpan>
+    </x:Arguments>
+    </maps:Map>
 
-    <Grid RowDefinitions=".05*, *, .05*" ColumnDefinitions=".05*, *, .05*">
-        <maps:Map x:Name="map" Grid.Row="1" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
-    </Grid>
+
+
 </ContentPage>
+<!--<Grid RowDefinitions=".05*, *, .05*" ColumnDefinitions=".05*, *, .05*">
+        <maps:Map x:Name="map" Grid.Row="1" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+    </Grid>-->

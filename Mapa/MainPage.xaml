@@ -4,7 +4,7 @@
              x:Class="Mapa.MainPage"
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials">
-    <!--<maps:Map IsShowingUser="true" >
+    <!--<maps:Map IsShowingUser="true">
         <x:Arguments>
             <MapSpan>
                 <x:Arguments>
@@ -20,14 +20,15 @@
             </MapSpan>
         </x:Arguments>
     </maps:Map>-->
-    <maps:Map IsShowingUser="true">
+
+    <maps:Map x:Name="map" IsShowingUser="true">
         <x:Arguments>
             <MapSpan>
                 <x:Arguments>
                     <sensors:Location>
                         <x:Arguments>
-                            <x:Double>19.04371283890263</x:Double>
-                            <x:Double>-98.19832840321891</x:Double>
+                            <x:Double>19.0437321935132</x:Double>
+                            <x:Double>-98.19840290899549</x:Double>
                         </x:Arguments>
                     </sensors:Location>
                     <x:Double>0.01</x:Double>
@@ -37,20 +38,19 @@
         </x:Arguments>
         <maps:Map.Pins>
             <maps:Pin Label="Zócalo"
-                      Address="The city Puebla"
+                      Address="Ciudad de Puebla"
                       Type="Place">
                 <maps:Pin.Location>
                     <sensors:Location>
                         <x:Arguments>
-                            <x:Double>19.04371283890263</x:Double>
-                            <x:Double>-98.19832840321891</x:Double>
+                            <x:Double>19.0437321935132</x:Double>
+                            <x:Double>-98.19840290899549</x:Double>
                         </x:Arguments>
                     </sensors:Location>
                 </maps:Pin.Location>
             </maps:Pin>
         </maps:Map.Pins>
     </maps:Map>
-
 
 </ContentPage>
 <!--<Grid RowDefinitions=".05*, *, .05*" ColumnDefinitions=".05*, *, .05*">

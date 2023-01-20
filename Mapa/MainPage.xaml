@@ -21,7 +21,8 @@
         </x:Arguments>
     </maps:Map>-->
 
-    <maps:Map x:Name="map" IsShowingUser="true">
+    <!--Mostrar el mapa con chincheta y etiqueta y ubicacion actual-->
+    <!--<maps:Map x:Name="map" IsShowingUser="true">
         <x:Arguments>
             <MapSpan>
                 <x:Arguments>
@@ -50,6 +51,93 @@
                 </maps:Pin.Location>
             </maps:Pin>
         </maps:Map.Pins>
+    </maps:Map>-->
+
+    <!--Presentación de una colección de pin-->
+    <!--<Grid>
+        <maps:Map x:Name="map"
+                  ItemsSource="{Binding Positions}">
+            <maps:Map.ItemTemplate>
+                <DataTemplate>
+                    <maps:Pin Location="{Binding Location}"
+                              Address="{Binding Address}"
+                              Label="{Binding Description}" />
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </maps:Map>
+    </Grid>-->
+
+    <!--Para creacion de poligonos-->
+    <!--<maps:Map>
+        <maps:Map.MapElements>
+            <maps:Polygon StrokeColor="#FF9900"
+                          StrokeWidth="8"
+                          FillColor="#88FF9900">
+                <maps:Polygon.Geopath>
+                    <sensors:Location>
+                        <x:Arguments>
+                            <x:Double>47.6458676</x:Double>
+                            <x:Double>-122.1356007</x:Double>
+                        </x:Arguments>
+                    </sensors:Location>
+                    <sensors:Location>
+                        <x:Arguments>
+                            <x:Double>47.6458097</x:Double>
+                            <x:Double>-122.142789</x:Double>
+                        </x:Arguments>
+                    </sensors:Location>
+                </maps:Polygon.Geopath>
+            </maps:Polygon>
+        </maps:Map.MapElements>
+    </maps:Map>-->
+
+    <!--Creación de una polilínea-->
+    <!--<maps:Map>
+        <maps:Map.MapElements>
+            <maps:Polyline StrokeColor="Black"
+                           StrokeWidth="12">
+                <maps:Polyline.Geopath>
+                    <sensors:Location>
+                        <x:Arguments>
+                            <x:Double>47.6381401</x:Double>
+                            <x:Double>-122.1317367</x:Double>
+                        </x:Arguments>
+                    </sensors:Location>
+                    <sensors:Location>
+                        <x:Arguments>
+                            <x:Double>47.6381473</x:Double>
+                            <x:Double>-122.1350841</x:Double>
+                        </x:Arguments>
+                    </sensors:Location>
+                </maps:Polyline.Geopath>
+            </maps:Polyline>
+        </maps:Map.MapElements>
+    </maps:Map>-->
+
+
+    <!--Crear un círculo-->
+    <maps:Map>
+        <maps:Map.MapElements>
+            <maps:Circle StrokeColor="#88FF0000"
+                         StrokeWidth="8"
+                         FillColor="#88FFC0CB">
+                <maps:Circle.Center>
+                    <sensors:Location>
+                        <x:Arguments>
+                            <x:Double>37.79752</x:Double>
+                            <x:Double>-122.40183</x:Double>
+                        </x:Arguments>
+                    </sensors:Location>
+                </maps:Circle.Center>
+                <maps:Circle.Radius>
+                    <Distance>
+                        <x:Arguments>
+                            <x:Double>250</x:Double>
+                        </x:Arguments>
+                    </Distance>
+                </maps:Circle.Radius>
+            </maps:Circle>
+        </maps:Map.MapElements>
     </maps:Map>
 
 </ContentPage>

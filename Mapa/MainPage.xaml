@@ -92,31 +92,31 @@
     </maps:Map>-->
 
     <!--Creación de una polilínea-->
-    <!--<maps:Map>
+    <maps:Map>
         <maps:Map.MapElements>
             <maps:Polyline StrokeColor="Black"
                            StrokeWidth="12">
                 <maps:Polyline.Geopath>
                     <sensors:Location>
                         <x:Arguments>
-                            <x:Double>47.6381401</x:Double>
-                            <x:Double>-122.1317367</x:Double>
+                            <x:Double>19.018401627619276</x:Double>
+                            <x:Double>-98.26614873853096</x:Double>
                         </x:Arguments>
                     </sensors:Location>
                     <sensors:Location>
                         <x:Arguments>
-                            <x:Double>47.6381473</x:Double>
-                            <x:Double>-122.1350841</x:Double>
+                            <x:Double>19.018401627619276</x:Double>
+                            <x:Double>-98.26614873853096</x:Double>
                         </x:Arguments>
                     </sensors:Location>
                 </maps:Polyline.Geopath>
             </maps:Polyline>
         </maps:Map.MapElements>
-    </maps:Map>-->
+    </maps:Map>
 
 
     <!--Crear un círculo-->
-    <maps:Map>
+    <!--<maps:Map>
         <maps:Map.MapElements>
             <maps:Circle StrokeColor="#88FF0000"
                          StrokeWidth="8"
@@ -138,7 +138,7 @@
                 </maps:Circle.Radius>
             </maps:Circle>
         </maps:Map.MapElements>
-    </maps:Map>
+    </maps:Map>-->
 
 </ContentPage>
 <!--<Grid RowDefinitions=".05*, *, .05*" ColumnDefinitions=".05*, *, .05*">

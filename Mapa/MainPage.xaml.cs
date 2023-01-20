@@ -8,7 +8,7 @@ public partial class MainPage : ContentPage
 {
     public MainPage()
     {
-        Location location = new Location(19.0437321935132, -98.19840290899549);
+        Location location = new Location(19.018401627619276, -98.26614873853096);
         MapSpan mapSpan = new MapSpan(location, 0.01, 0.01);
         Map map = new Map(mapSpan)
         {
@@ -16,16 +16,16 @@ public partial class MainPage : ContentPage
         };
         Pin pin = new Pin
         {
-            Label = "Zócalo",
+            Label = "Torre Titanium",
             Address = "Ciudad de Puebla",
             Type = PinType.Place,
-            Location = new Location(19.0437321935132, -98.19840290899549)
+            Location = new Location(19.018401627619276, -98.26614873853096)
         };
         Pin boardwalkPin = new Pin
         {
-            Location = new Location(19.0437321935132, -98.19840290899549),
-            Label = "Zocalo",
-            Address = "Ciudad de Puebla",
+            Location = new Location(19.018401627619276, -98.26614873853096),
+            Label = "Torre Titanium",
+            Address = "Puebla",
             Type = PinType.Place
         };
         boardwalkPin.MarkerClicked += async (s, args) =>
@@ -37,8 +37,8 @@ public partial class MainPage : ContentPage
 
         Pin wharfPin = new Pin
         {
-            Location = new Location(19.047302014007155, -98.2075331478327),
-            Label = "Paseo Bravo",
+            Location = new Location(19.018401627619276, -98.26614873853096),
+            Label = "Torre Titanium",
             Address = "Puebla",
             Type = PinType.Place
         };
@@ -47,7 +47,7 @@ public partial class MainPage : ContentPage
             string pinName = ((Pin)s).Label;
             await DisplayAlert("Info Window Clicked", $"The info window was clicked for {pinName}.", "Ok");
         };
-        // Instantiate a polygon
+        //// Instantiate a polygon
         Polygon polygon = new Polygon
         {
             StrokeWidth = 8,
@@ -55,9 +55,9 @@ public partial class MainPage : ContentPage
             FillColor = Color.FromArgb("#881BA1E2"),
             Geopath =
             {
-                new Location(19.0437321935132, -98.19840290899549),
-                new Location(19.04644956287260, -98.20794985340506),
-                new Location(19.040957483196564, -98.2038719820292)
+                new Location(19.018401627619276, -98.26614873853096),
+                new Location(19.019593877251133, -98.26466600149105),
+                new Location(19.020053258282356, -98.26838254695079)
             }
         };
 
@@ -71,16 +71,28 @@ public partial class MainPage : ContentPage
             StrokeWidth = 12,
             Geopath =
             {
-                new Location(19.0437321935132, -98.19840290899549),
-                new Location(19.04644956287250, -98.20794985340506),
+                new Location(19.01627627089234, -98.266392606872),
+                new Location(19.016192463086643, -98.26656333157047),
+                new Location(19.016240574980262, -98.2668719492946),
+                new Location(19.01642991842636, -98.2669770106475),
+                new Location(19.017033942279358, -98.26659823640848),
+                new Location(19.01771434248534, -98.26617107120323),
+                new Location(19.017875960950025, -98.26597020446798),
+                new Location(19.01791102785812, -98.26588040405262),
+                new Location(19.017972582748847, -98.26574934248215),
+                new Location(19.017959413759883, -98.26557754779354),
+                new Location(19.017949613211155, -98.26545335675269),
+                new Location(19.017907709735404, -98.26535157856705),
+                new Location(19.017833214641293, -98.26517757070133),
+                new Location(19.01749911643668, -98.26511017718323),
             }
         };
         map.MapElements.Add(polyline);
 
-        // Instantiate a Circle
+        //// Instantiate a Circle
         Circle circle = new Circle
         {
-            Center = new Location(19.0437321935132, -98.19840290899549),
+            Center = new Location(19.018401627619276, -98.26614873853096),
             Radius = new Distance(250),
             StrokeColor = Color.FromArgb("#88FF0000"),
             StrokeWidth = 8,

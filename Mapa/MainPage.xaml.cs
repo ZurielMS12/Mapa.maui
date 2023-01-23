@@ -50,14 +50,19 @@ public partial class MainPage : ContentPage
         //// Instantiate a polygon
         Polygon polygon = new Polygon
         {
-            StrokeWidth = 8,
+            StrokeWidth = 5,
             StrokeColor = Color.FromArgb("#1BA1E2"),
             FillColor = Color.FromArgb("#881BA1E2"),
             Geopath =
             {
-                new Location(19.018401627619276, -98.26614873853096),
-                new Location(19.019593877251133, -98.26466600149105),
-                new Location(19.020053258282356, -98.26838254695079)
+                new Location(19.022488285846567, -98.26468853085416),
+                new Location(19.021809674510806, -98.2651854755115),
+                new Location(19.02008531882564, -98.26391505336683),
+                new Location(19.020091526667443, -98.26256895475503),
+                new Location(19.02112131676063, -98.26227250402964),
+                new Location(19.022697629464815, -98.26199526035289),
+                new Location(19.02323653603408, -98.26291669072121),
+
             }
         };
 
@@ -67,8 +72,8 @@ public partial class MainPage : ContentPage
         // instantiate a polyline
         Polyline polyline = new Polyline
         {
-            StrokeColor = Colors.Blue,
-            StrokeWidth = 12,
+            StrokeColor = Colors.Red,
+            StrokeWidth = 4,
             Geopath =
             {
                 new Location(19.01627627089234, -98.266392606872),
@@ -85,6 +90,19 @@ public partial class MainPage : ContentPage
                 new Location(19.017907709735404, -98.26535157856705),
                 new Location(19.017833214641293, -98.26517757070133),
                 new Location(19.01749911643668, -98.26511017718323),
+                new Location(19.017300771666786, -98.26506822697354),
+                new Location(19.01658685638347, -98.26495003295398),
+                new Location(19.015425961473106, -98.26477930824004),
+                new Location(19.012076916182025, -98.26421436460237),
+                new Location(19.01200781337859, -98.26421319616348),
+                new Location(19.01161544666158, -98.26409365679423),
+                new Location(19.01161544666158, -98.26409365679423),
+                new Location(19.01143205755247, -98.26405531397766),
+                new Location(19.01124440336817, -98.26406433581656),
+                new Location(19.010809386029614, -98.26412523323229),
+                new Location(19.01027627500494, -98.26430341455938)
+
+
             }
         };
         map.MapElements.Add(polyline);
@@ -93,16 +111,14 @@ public partial class MainPage : ContentPage
         Circle circle = new Circle
         {
             Center = new Location(19.018401627619276, -98.26614873853096),
-            Radius = new Distance(250),
-            StrokeColor = Color.FromArgb("#88FF0000"),
-            StrokeWidth = 8,
-            FillColor = Color.FromArgb("#88FFC0CB")
+            Radius = new Distance(80),
+            StrokeColor = Color.FromArgb("#39FF14"),
+            StrokeWidth = 5,
+            FillColor = Color.FromArgb("#fffacd")
         };
 
         // Add the Circle to the map's MapElements collection
         map.MapElements.Add(circle);
-
-
         map.Pins.Add(pin);
         Content = map;
     }

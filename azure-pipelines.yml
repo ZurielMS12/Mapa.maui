@@ -30,20 +30,20 @@ stages:
                   marianazacariaschavez@hotmail.com
               instructions: 'Validar el trabajo y realizar el resumen del mismo'
               onTimeout: 'resume'
-        - task: AndroidSigning@2
-          inputs:
-            apkFiles: '**/*.apk'
-            jarsign: true
-            jarsignerKeystoreFile: 'pathToYourKeystoreFile'
-            jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
-            jarsignerKeystoreAlias: 'yourKeystoreAlias'
-            jarsignerKeyPassword: '$(jarsignerKeyPassword)'
-            zipalign: true
-        - task: CopyFiles@2
-          inputs:
-            contents: '**/*.apk'
-            targetFolder: '$(build.artifactStagingDirectory)'
-        - task: PublishBuildArtifacts@1
+        #- task: AndroidSigning@2
+         # inputs:
+         #   apkFiles: '**/*.apk'
+         #   jarsign: true
+         #   jarsignerKeystoreFile: 'pathToYourKeystoreFile'
+         #   jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
+         #   jarsignerKeystoreAlias: 'yourKeystoreAlias'
+         #   jarsignerKeyPassword: '$(jarsignerKeyPassword)'
+         #   zipalign: true
+        #- task: CopyFiles@2
+         # inputs:
+          #  contents: '**/*.apk'
+          #  targetFolder: '$(build.artifactStagingDirectory)'
+        #- task: PublishBuildArtifacts@1
       
       - job: Job_CI_Android
         displayName: 'Compilacion Android'

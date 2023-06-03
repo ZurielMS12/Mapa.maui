@@ -7,13 +7,30 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  vmImage: "windows-latest"
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  buildConfiguration: 'Release'
+  project: 'PruebaMAUI/Mapa/Mapa.csproj' 
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+  - stage: Compilacion_Android
+    displayName: 'Compilacion proyecto Android'
+    jobs:
+      - job: ValidationJob
+        displayName: Validación Android
+        pool: server    
+        timeoutInMinutes: 4320 # job times out in 3 days
+        steps: 
+        - task: ManualValidation@0
+          timeoutInMinutes: 1440 # task times out in 1 day
+          inputs:
+              notifyUsers: |
+                  marlo15.9909@outlook.com
+                  marianazacariaschavez@hotmail.com
+              instructions: 'Validar el trabajo y realizar el resumen del mismo'
+              onTimeout: 'resume'
+      - job: Job_CI_Android
+        displayName: 'Compilacion Android'
+        continueOnError: false
+        dependsOn: ValidationJob

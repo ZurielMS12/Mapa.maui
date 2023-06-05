@@ -59,9 +59,7 @@ stages:
             projectFile: PruebaMaui/Deployment.Mapa/Deployment.Mapa.Android/Deployment.Mapa.Android.csproj
             outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
             configuration: '$(BuildConfiguration)'
-            clean: 
-
-steps:
+            clean: true
         - task: AndroidSigning@3
           displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
           inputs:

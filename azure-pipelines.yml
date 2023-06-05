@@ -53,7 +53,14 @@ stages:
           inputs:
             restoreSolution: '$(Parameters.restorePkgSolution)'
             vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
-
+        - task: XamarinAndroid@1
+          displayName: 'Build Xamarin.Android project Apps/Cepo.Ciudadano/Cepo.Ciudadano.Android/Cepo.Ciudadano.Android.csproj'
+          inputs:
+            projectFile: Apps/Cepo.Ciudadano/Cepo.Ciudadano.Android/Cepo.Ciudadano.Android.csproj
+            outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+            configuration: '$(BuildConfiguration)'
+            clean: true
+          
           #- task: NuGetToolInstaller@1
            # displayName: 'Restore NuGet Packages'
             #inputs:

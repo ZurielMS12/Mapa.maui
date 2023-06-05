@@ -47,8 +47,13 @@ stages:
           inputs:
             versionSpec: 6.x
             checkLatest: true
-       
-          
+
+        - task: NuGetCommand@2
+          displayName: 'NuGet restore'
+          inputs:
+            restoreSolution: '$(Parameters.restorePkgSolution)'
+            vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
+
           #- task: NuGetToolInstaller@1
            # displayName: 'Restore NuGet Packages'
             #inputs:

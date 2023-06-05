@@ -69,11 +69,11 @@ stages:
             apksignerKeystoreAlias: general
             apksignerKeyPassword: general
 
-        - task: PublishBuildArtifacts@1
-          displayName: 'Publish Artifact: drop'
-          inputs:
-            PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
-          condition: succeededOrFailed()
+      #  - task: PublishBuildArtifacts@1
+      #    displayName: 'Publish Artifact: drop'
+      #    inputs:
+      #      PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
+      #    condition: succeededOrFailed()
           
           #- task: NuGetToolInstaller@1
            # displayName: 'Restore NuGet Packages'

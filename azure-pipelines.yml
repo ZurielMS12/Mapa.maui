@@ -56,13 +56,13 @@ stages:
               vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
               noCache: true
           
-          - task: AndroidSigning@2
-            inputs:
-              apkFiles: '**/*.apk'
+         # - task: AndroidSigning@2
+         #   inputs:
+         #     apkFiles: '**/*.apk'
 
-          - task: CopyFiles@2
-            inputs:
-              contents: '**/*.apk'
-              targetFolder: '$(build.artifactStagingDirectory)'
+        #- task: CopyFiles@2
+        #    inputs:
+        #      contents: '**/*.apk'
+        #      targetFolder: '$(build.artifactStagingDirectory)'
           
-          - task: PublishBuildArtifacts@1
+        #  - task: PublishBuildArtifacts@1

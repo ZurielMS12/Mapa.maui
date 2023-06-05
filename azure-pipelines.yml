@@ -35,13 +35,11 @@ stages:
         continueOnError: false
         dependsOn: ValidationJob
         steps:
-
         - task: UseDotNet@2
           displayName: 'Use .NET Core sdk 6.0.x'
           inputs:
             version: 6.0.x
-            includePreviewVersions: true
-
+            includePreviewVersions: true  
         - task: NuGetToolInstaller@0
           displayName: 'Use NuGet 6.x'
           inputs:
@@ -76,12 +74,7 @@ stages:
           inputs:
             PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
           condition: succeededOrFailed()
-          
-        - task: NuGetCommand@2
-          displayName: 'NuGet restore'
-          inputs:
-            restoreSolution: '$(Parameters.restorePkgSolution)'
-            vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
+
           
           #- task: NuGetToolInstaller@1
            # displayName: 'Restore NuGet Packages'

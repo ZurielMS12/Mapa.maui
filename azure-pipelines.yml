@@ -60,14 +60,6 @@ stages:
             outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
             configuration: '$(BuildConfiguration)'
             clean: true
-        - task: AndroidSigning@3
-          displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
-          inputs:
-            apkFiles: '$(Parameters.appFiles)'
-            apksignerKeystoreFile: general.keystore
-            apksignerKeystorePassword: general
-            apksignerKeystoreAlias: general
-            apksignerKeyPassword: general
 
           
           #- task: NuGetToolInstaller@1

@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  project: 'PruebaMAUI/Mapa/Mapa.csproj' 
+  project: 'PruebaMAUI/Mapa.maui/Mapa.maui.csproj' 
 
 stages:
   - stage: Compilacion_Android
@@ -34,19 +34,24 @@ stages:
         displayName: 'Compilacion Android'
         continueOnError: false
         dependsOn: ValidationJob
-
-       # steps:
-       #   - task: AndroidSigning@2
-       #    inputs:
-       #         apkFiles: '**/*.apk'
-       #         jarsign: true
-       #         jarsignerKeystoreFile: 'pathToYourKeystoreFile'
-       #         jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
-       #         jarsignerKeystoreAlias: 'yourKeystoreAlias'
-       #         jarsignerKeyPassword: '$(jarsignerKeyPassword)'
-       #         zipalign: true
-       #   - task: CopyFiles@2
-       #     inputs:
-       #         contents: '**/*.apk'
-       #         targetFolder: '$(build.artifactStagingDirectory)'
-       #   - task: PublishBuildArtifacts@1 
+        steps:
+          - task: NuGetToolInstaller@1
+            displayName: 'Restore NuGet Packages'
+            inputs:
+              versionSpec: 6.0.x
+          
+          - task: NuGetCommand@2
+            inputs:
+              command: 'restore'
+              solution: $(project)
+              includeNuGetOrg: true
+              feedsToUse: 'select'
+              vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
+              noCache: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: 'restore'
+              projects: '*.sln'
+              feedsToUse: 'select'
+              vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
+              noCache: true

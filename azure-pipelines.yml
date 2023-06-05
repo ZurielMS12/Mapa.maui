@@ -30,6 +30,7 @@ stages:
                   marianazacariaschavez@hotmail.com
               instructions: 'Validar el trabajo y realizar el resumen del mismo'
               onTimeout: 'resume'      
+      
       - job: Job_CI_Android
         displayName: 'Compilacion Android'
         continueOnError: false
@@ -39,42 +40,14 @@ stages:
           displayName: 'Use .NET Core sdk 6.0.x'
           inputs:
             version: 6.0.x
-            includePreviewVersions: true  
+            includePreviewVersions: true
+
         - task: NuGetToolInstaller@0
           displayName: 'Use NuGet 6.x'
           inputs:
             versionSpec: 6.x
             checkLatest: true
-
-        - task: NuGetCommand@2
-          displayName: 'NuGet restore'
-          inputs:
-            restoreSolution: '$(Parameters.restorePkgSolution)'
-            vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
-
-        - task: XamarinAndroid@1
-          displayName: 'Build Maui.Android project PruebaMAUI/Deployment.Mapa/Deployment.Mapa.Android/Deployment.Mapa.Android.csproj'
-          inputs:
-            projectFile: PruebaMAUI/Deployment.Mapa/Deployment.Mapa.Android/Deployment.Mapa.Android.csproj
-            outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
-            configuration: '$(BuildConfiguration)'
-            clean: true
-
-        - task: AndroidSigning@3
-          displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
-          inputs:
-            apkFiles: '$(Parameters.appFiles)'
-            apksignerKeystoreFile: general.keystore
-            apksignerKeystorePassword: general
-            apksignerKeystoreAlias: general
-            apksignerKeyPassword: general
-
-        - task: PublishBuildArtifacts@1
-          displayName: 'Publish Artifact: drop'
-          inputs:
-            PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
-          condition: succeededOrFailed()
-
+       
           
           #- task: NuGetToolInstaller@1
            # displayName: 'Restore NuGet Packages'

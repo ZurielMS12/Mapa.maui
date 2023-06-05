@@ -35,26 +35,69 @@ stages:
         continueOnError: false
         dependsOn: ValidationJob
         steps:
-          - task: NuGetToolInstaller@1
-            displayName: 'Restore NuGet Packages'
-            inputs:
-              versionSpec: 6.0.x
+
+        - task: UseDotNet@2
+          displayName: 'Use .NET Core sdk 6.0.x'
+          inputs:
+            version: 6.0.x
+            includePreviewVersions: true
+
+        - task: NuGetToolInstaller@0
+          displayName: 'Use NuGet 6.x'
+          inputs:
+            versionSpec: 6.x
+            checkLatest: true
+
+        - task: NuGetCommand@2
+          displayName: 'NuGet restore'
+          inputs:
+            restoreSolution: '$(Parameters.restorePkgSolution)'
+            vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
+
+        - task: XamarinAndroid@1
+          displayName: 'Build Maui.Android project PruebaMAUI/Deployment.Mapa/Deployment.Mapa.Android/Deployment.Mapa.Android.csproj'
+          inputs:
+            projectFile: PruebaMAUI/Deployment.Mapa/Deployment.Mapa.Android/Deployment.Mapa.Android.csproj
+            outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+            configuration: '$(BuildConfiguration)'
+            clean: true
+
+        - task: AndroidSigning@3
+          displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
+          inputs:
+            apkFiles: '$(Parameters.appFiles)'
+            apksignerKeystoreFile: general.keystore
+            apksignerKeystorePassword: general
+            apksignerKeystoreAlias: general
+            apksignerKeyPassword: general
+
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Artifact: drop'
+          inputs:
+            PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
+          condition: succeededOrFailed()
           
-          - task: NuGetCommand@2
-            inputs:
-              command: 'restore'
-              solution: $(project)
-              includeNuGetOrg: true
-              feedsToUse: 'select'
-              vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
-              noCache: true
-          - task: DotNetCoreCLI@2
-            inputs:
-              command: 'restore'
-              projects: '*.sln'
-              feedsToUse: 'select'
-              vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
-              noCache: true
+          
+          #- task: NuGetToolInstaller@1
+           # displayName: 'Restore NuGet Packages'
+            #inputs:
+             # versionSpec: 6.0.x
+          
+          #- task: NuGetCommand@2
+           # inputs:
+            #  command: 'restore'
+             # solution: $(project)
+              #includeNuGetOrg: true
+              #feedsToUse: 'select'
+              #vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
+             # noCache: true
+          #- task: DotNetCoreCLI@2
+           # inputs:
+            #  command: 'restore'
+             # projects: '*.sln'
+             # feedsToUse: 'select'
+             # vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
+             # noCache: true
           
          # - task: AndroidSigning@2
          #   inputs:

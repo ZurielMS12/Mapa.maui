@@ -34,17 +34,19 @@ stages:
         displayName: 'Compilacion Android'
         continueOnError: false
         dependsOn: ValidationJob
-      #- task: AndroidSigning@2
-         # inputs:
-         #   apkFiles: '**/*.apk'
-         #   jarsign: true
-         #   jarsignerKeystoreFile: 'pathToYourKeystoreFile'
-         #   jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
-         #   jarsignerKeystoreAlias: 'yourKeystoreAlias'
-         #   jarsignerKeyPassword: '$(jarsignerKeyPassword)'
-         #   zipalign: true
-      #- task: CopyFiles@2
-         # inputs:
-          #  contents: '**/*.apk'
-          #  targetFolder: '$(build.artifactStagingDirectory)'
-        #- task: PublishBuildArtifacts@1
+
+        steps:
+          - task: AndroidSigning@2
+            inputs:
+                apkFiles: '**/*.apk'
+                jarsign: true
+                jarsignerKeystoreFile: 'pathToYourKeystoreFile'
+                jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
+                jarsignerKeystoreAlias: 'yourKeystoreAlias'
+                jarsignerKeyPassword: '$(jarsignerKeyPassword)'
+                zipalign: true
+          - task: CopyFiles@2
+            inputs:
+                contents: '**/*.apk'
+                targetFolder: '$(build.artifactStagingDirectory)'
+          - task: PublishBuildArtifacts@1

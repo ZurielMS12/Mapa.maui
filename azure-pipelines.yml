@@ -57,3 +57,12 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'drop'
             publishLocation: 'Container'
+
+        - task: AndroidSigning@3
+          displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
+          inputs:
+            apkFiles: '$(Parameters.appFiles)'
+            apksignerKeystoreFile: general.keystore
+            apksignerKeystorePassword: general
+            apksignerKeystoreAlias: general
+            apksignerKeyPassword: general

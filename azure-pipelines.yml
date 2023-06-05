@@ -36,60 +36,24 @@ stages:
         continueOnError: false
         dependsOn: ValidationJob
         steps:
-        - task: UseDotNet@2
-          displayName: 'Use .NET Core sdk 6.0.x'
+      
+        - task: CmdLine@2
           inputs:
-            version: 6.0.x
-            includePreviewVersions: true
-
-        - task: NuGetToolInstaller@0
-          displayName: 'Use NuGet 6.x'
+            script: 'dotnet workload install maui'
+        
+        - task: DotNetCoreCLI@2
           inputs:
-            versionSpec: 6.x
-            checkLatest: true
-
-        - task: NuGetCommand@2
-          displayName: 'NuGet restore'
+            command: 'build'
+            projects: 'Mapa.sln'
+            arguments: '-c Release -f net7.0-android'
+        - task: CopyFiles@2
           inputs:
-            restoreSolution: '$(Parameters.restorePkgSolution)'
-            vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
-      #  - task: XamarinAndroid@1
-      #    displayName: 'Build Xamarin.Android project PruebaMaui/Deployment.Mapa/Deployment.Mapa.Android/Deployment.Mapa.Android.csproj'
-      #    inputs:
-      #      projectFile: PruebaMaui/Deployment.Mapa/Deployment.Mapa.Android/Deployment.Mapa.Android.csproj
-      #      outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
-      #      configuration: '$(BuildConfiguration)'
-      #      clean: true
-
-          
-          #- task: NuGetToolInstaller@1
-           # displayName: 'Restore NuGet Packages'
-            #inputs:
-             # versionSpec: 6.0.x
-          
-          #- task: NuGetCommand@2
-           # inputs:
-            #  command: 'restore'
-             # solution: $(project)
-              #includeNuGetOrg: true
-              #feedsToUse: 'select'
-              #vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
-             # noCache: true
-          #- task: DotNetCoreCLI@2
-           # inputs:
-            #  command: 'restore'
-             # projects: '*.sln'
-             # feedsToUse: 'select'
-             # vstsFeed: 'af2e86fe-2cee-437d-9bab-6fb66e7a5fd2'
-             # noCache: true
-          
-         # - task: AndroidSigning@2
-         #   inputs:
-         #     apkFiles: '**/*.apk'
-
-        #- task: CopyFiles@2
-        #    inputs:
-        #      contents: '**/*.apk'
-        #      targetFolder: '$(build.artifactStagingDirectory)'
-          
-        #  - task: PublishBuildArtifacts@1
+            SourceFolder: '$(agent.builddirectory)'
+            Contents: '**/*-Signed.aab'
+            TargetFolder: '$(build.artifactstagingdirectory)'
+            flattenFolders: true
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'drop'
+            publishLocation: 'Container'
